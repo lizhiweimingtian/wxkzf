@@ -1,0 +1,87 @@
+<script>
+;(function($){
+	Zepto(function($){
+		init_swipe();
+		$.zcontent.add_success(init_swipe);
+	})
+	function init_swipe()
+	{
+		{foreach from=$store_list item=item key=scr_key}
+		$('#store_list_{$scr_key}').swipeLeft(function()
+		{
+			$('#store_list_{$scr_key}').slideLeftOut(200,{literal}function(){{/literal}
+				$('#store_list_{if $scr_key gte $store_list_count}1{else}<?php echo ($this->_var['scr_key']+1); ?>{/if}').slideLeftIn(200);
+			});
+		});
+		$('#store_list_{$scr_key}').swipeRight(function()
+		{
+			$('#store_list_{$scr_key}').slideRightOut(200,{literal}function(){{/literal}
+				$('#store_list_{if $scr_key lte 1}{$store_list_count}{else}<?php echo ($this->_var['scr_key']-1); ?>{/if}').slideRightIn(200);
+			});
+		});
+		{/foreach}
+		{foreach from=$sub_list item=item key=scr_key}
+		$('#sub_list_{$scr_key}').swipeLeft(function()
+		{
+			$('#sub_list_{$scr_key}').slideLeftOut(200,{literal}function(){{/literal}
+				$('#sub_list_{if $scr_key gte $sub_list_count}1{else}<?php echo ($this->_var['scr_key']+1); ?>{/if}').slideLeftIn(200);
+			});
+		});
+		$('#sub_list_{$scr_key}').swipeRight(function()
+		{
+			$('#sub_list_{$scr_key}').slideRightOut(200,{literal}function(){{/literal}
+				$('#sub_list_{if $scr_key lte 1}{$sub_list_count}{else}<?php echo ($this->_var['scr_key']-1); ?>{/if}').slideRightIn(200);
+			});
+		});
+		{/foreach}
+}
+})(Zepto)
+
+function show_store_list()
+{
+	$('#store_menu_list').slideLeftOut(200,{literal}function(){{/literal}$('#store_list_1').slideLeftIn(200)});
+}
+function show_sub_list()
+{
+	$('#store_menu_list').slideLeftOut(200,{literal}function(){{/literal}$('#sub_list_1').slideLeftIn(200)});
+}
+function change_sid(sid)
+{
+	$.zcontent.set('sid',sid);
+	search();
+}
+
+function change_ssid(ssid)
+{
+	$.zcontent.set('ssid',ssid);
+	search();
+}
+</script>
+<ul class="order_type_con" id='store_menu_list'>
+{if $sel_store.store_id gt 0}
+<li class='curr'><a href='javascript:void(0);' onclick='show_store_list();'>{$sel_store.store_name}</a></li>
+{else}
+<li><a href='javascript:void(0);' onclick='show_store_list();' >{$sel_store.store_name}</a></li>
+{/if}
+{if $showck}
+{if $sel_sub.store_id gt 0}
+<li class='curr'><a href='javascript:void(0);' onclick='show_sub_list();'> {$sel_sub.store_name}</a></li>
+{else}
+<li><a href='javascript:void(0);' onclick='show_sub_list();' > {$sel_sub.store_name}</a></li>
+{/if}
+{/if}
+</ul>
+{foreach from=$store_list item=screen key=scr_key}
+<ul class="order_type_con" id='store_list_{$scr_key}' style='display:none;'>
+{foreach from=$screen item=item key=key}
+<li ><a href='javascript:void(0);' onclick="change_sid({$item.store_id})">{$item.store_name}</a></li>
+{/foreach}
+</ul>
+{/foreach}
+{foreach from=$sub_list item=screen key=scr_key}
+<ul class="order_type_con" id='sub_list_{$scr_key}' style='display:none;'>
+{foreach from=$screen item=item key=key}
+<li ><a href='javascript:void(0);' onclick="change_ssid({$item.store_id})">{$item.store_name}</a></li>
+{/foreach}
+</ul>
+{/foreach}

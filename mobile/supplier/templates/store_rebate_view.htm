@@ -1,0 +1,217 @@
+{if $full_page eq 1}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    {include file='html_header.htm'}
+    <script>
+    Zepto(function($)
+    {
+       $.zcontent.add_static('rebate_id');
+    })
+      function toggle_other_info()
+      {
+        $('#other_info').slideToggle();
+      }
+      
+      function toggle_verify_info()
+      {
+        $('#verify_info').slideToggle();
+      }
+      
+      function toggle_logs_info()
+      {
+        $('#logs_info').slideToggle();
+      }    
+      
+    </script>
+  </head>
+  <body>
+    <div id='container'>
+      {/if}
+      {include file='page_header.htm'}
+      <section>
+      <form action="supplier_store_rebate.php" method="post" name="theForm" enctype="multipart/form-data">
+        <div class="order_info_con order_pd">
+          <div class="order_base">
+            <p class="edit"><span>基本信息</span></p>
+            <div class="base_info base_info_search">
+              <p class="first">结算单编号：{$rebate.sign}</p>
+              <p>仓库名称：{$rebate.store_name}</p>
+              <p>仓库主管：{if $supplier.userinfo}
+                    {foreach from=$supplier.userinfo item=user}
+                    {$user.admin_name}&nbsp;&nbsp;
+                    {/foreach}
+                    {else}
+                    暂无设置主管
+                    {/if}</p>
+              <p>结算期间：{$rebate.rebate_paytime_start}-{$rebate.rebate_paytime_end}</p>
+            </div>
+          </div>
+          <div class="order_base">
+            <p class="edit"><span>结算信息</span></p>
+            <div class="base_info base_info_search">
+              <table width="100%" >
+                {foreach from=$money_info item=money key=key}
+                <tr>
+                  <td align="left" width='33%'>{if $key eq 'online'}线上货款：{else}线下货款(货到付款)：{/if}{$money.allmoney}</td>
+                  <td align='left' width='33%'>佣金比例：{$money.supplier_rebate}%</td>
+                  <td align="left" width='33%'>佣金：{$money.rebatemoney}</td>
+                </tr>
+                {/foreach}
+              </table>
+            </div>
+          </div>
+          <div class="order_base">
+            <p class="edit"><span>佣金统计</span></p>
+            <div class="base_info base_info_search">
+              <table width="100%" >
+                <tr>
+                  <td align="left" width='33%'>实收货款：{$allmoney.rebate_all}</td>
+                  <td align='left' width='33%'>授权调整货款：<input type='text' name='rebate_all' id='rebate_all' value='{$allmoney.rebate_all}'></td>
+                </tr>
+                <tr>
+                  <td align="left" width='33%'>-佣金：{$allmoney.allrebate}</td>
+                  <td align='left' width='33%'>-授权调整佣金：<input type='text' name='rebate_money' id='rebate_money' value='{$allmoney.rebate_money}'><input type='button' value='结算' onclick='jian();'></td>
+                </tr>
+                <tr><td align="left" width='33%'>=结算金额：{$allmoney.chamoney}</td><td align='left' width='33%' id='payable_price'>{$allmoney.payable_price}</td></tr>
+              </table>
+            </div>
+          </div>      
+        <script type="text/javascript" language="javascript">    
+            function jian(){
+                var all = parseFloat(document.getElementById('rebate_all').value);
+                var rebate = parseFloat(document.getElementById('rebate_money').value);
+                if(isNaN(all) || isNaN(rebate)){
+                        alert('输入金额不正确!');
+                        return false;
+                }
+                        document.getElementById('payable_price').innerHTML = (all*100 - rebate*100)/100;
+                }   
+        </script>
+          <div class="order_qita">
+            <p class="edit" id="order_qita" onclick='toggle_other_info()'><span>按如下信息给商家付款</span> <i></i></p>
+            <div class="qita_info" id='other_info'>
+              <table width='100%'>
+                <tr>
+                  <td>公司名称：</td>
+                  <td>{$supplier.company}</td>
+                </tr>
+                <tr>
+                  <td>地址：</td>
+                  <td>{$supplier.province}{$supplier.city}{$supplier.district}{$supplier.address}</td>
+                </tr>
+                <tr>
+                  <td>电话：</td>
+                  <td>{$supplier.mobile}</td>
+                </tr>
+                <tr>
+                  <td>开户行：</td>
+                  <td>{$supplier.bank_name}</td>
+                </tr>
+                <tr>
+                  <td>帐号：</td>
+                  <td>{$supplier.bank_number}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        
+          <div class="order_base">
+       {if $rebate.status eq 4}
+        <p class="edit"><span>审核</span></p>
+            <div class="base_info base_info_search">
+              <table width="100%" >
+                <tr>
+                    <td align="left" width='33%'>汇款凭证：</td>
+                    <td align="left" width='33%'><a href="{$rebate.rebate_img}">查看汇款凭证</a></td>
+                </tr>
+                <tr>
+                    <td align="left" width='33%'>操作备注：</td>
+                    <td align="left" width='33%'><textarea name='remark'>如结算单发生其他意外变动情况，您可在此输入变动备注信息</textarea></td>
+                </tr>
+                <tr>
+                    <td align="left" width='33%'>当前可操作项：</td>
+                    <td align="left" width='33%'><input type='hidden' name='id' value='{$rebate.rebate_id}'>
+                      {foreach from=$rebate.caozuo item=do}
+                      {if $do.type eq 'submit'}
+                      {$do.text}
+                      <input type='hidden' name='act' value='{$do.act}'>
+                      <input type="{$do.type}" value="{$do.name}">
+                      {/if}
+                      {/foreach}</td>
+                </tr>
+              </table>
+            </div>    
+       {else}
+            <p class="edit"><span>平台方审核</span></p>
+            <div class="base_info base_info_search">
+              <table width="100%" >
+            {if $rebate.status eq 3}
+            <tr>
+                <td align="left" width='33%'>上传汇票凭证：</td>
+                <td align="left" width='33%'>
+                 <input type="file" name="rebate_img" id="rebate_img"  size="35" />
+                </td>
+            </tr>
+            {/if}
+                <tr>
+                    <td align="left" width='33%'>操作备注：</td>
+                    <td align="left" width='33%'><textarea name='remark'></textarea></td>
+                </tr>
+                <tr>
+                    <td align="left" width='33%'>当前可操作项：</td>
+                    <td align="left" width='33%'>
+                    <input type='hidden' name='id' value='{$rebate.rebate_id}'>
+
+                    {foreach from=$rebate.caozuo item=do}
+                    {if $do.type eq 'submit' && $isqueren eq false}
+                    {$do.text}
+                    <input type='hidden' name='act' value='{$do.act}'>
+                    <input type="{$do.type}" value="{$do.name}">
+                    {/if}
+                    {/foreach}
+
+                    {if $rebate.status eq 2 && $isqueren}
+                    <input type='hidden' name='act1' value='queren'>
+                    <input type="submit" value="确认通过">
+                    {/if}
+                    </td>
+                </tr>
+              </table>
+            </div>
+          {/if}
+          </div>
+        
+          {if $logs}
+          <div class="order_qita">
+            <p class="edit" id="order_qita" onclick='toggle_logs_info()'><span>操作记录</span> <i></i></p>
+            <div class="qita_info" id='logs_info'>
+              <table width='100%' cellpadding="3" cellspacing="1">
+                <tr>
+                  <th align='left'>操作者</th>
+                  <th align='left'>操作时间</th>
+                  <th align='left'>操作事件</th>
+                  <th align='left'>备注</th>
+                </tr>
+                {foreach from=$logs item=log key=key}
+                <tr>
+                  <td align='left'>{$log.username}</td>
+                  <td align='left'>{$log.addtime_dec}</td>
+                  <td align='left'>{$log.typedec}</td>
+                  <td align='left'>{$log.contents}</td>
+                </tr>
+                {/foreach}
+              </table>
+            </div>
+          </div>
+          {/if}
+        </div>
+      </form>   
+      </section>
+      {include file='page_footer.htm'}
+      {if $full_page eq 1}
+    </div>
+    {include file='static_div.htm'}
+  </body>
+</html>
+{/if}

@@ -1,0 +1,1 @@
+select DISTINCT(s.goods_id) from `dcang`.`ecs_store_goods_stock` AS s left join `dcang`.`ecs_store_main` AS m on s.store_id=m.store_id where m.parent_id in (13,34) and s.store_number>0 

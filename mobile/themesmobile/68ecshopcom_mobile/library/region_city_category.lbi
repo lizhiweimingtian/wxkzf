@@ -1,0 +1,76 @@
+<div id="quyutanchu" class='zitidian_div ' style="display:none">
+<div id="quyutanchu_con">
+<div class='f_bg ub'>
+     
+	<div class='quyutanchu quyutanchu_left'>
+		 <!-- <div id='left_change0' class='select district' onClick=setTabQuyu('left_change',0)>附近</div>-->
+		  {foreach from=$info1 item=value key=key name=info1name}
+		 <!-- <div id='left_change{$key}' class="district {if $smarty.foreach.info1name.first}select{/if}" onClick=setTabQuyu('left_change',{$key})>{$value.region_name}</div> -->
+                    <div id='left_change{$key}' class="district {if $value.region_id eq $smarty.cookies.region_3}select{/if}" onClick=setTabQuyu('left_change',{$key})>{$value.region_name}</div>
+                {/foreach}
+	</div>
+
+	<div class='quyutanchu quyutanchu_right'>
+		<!--<div id='left_change_0' class="con xiangcun">
+			<div class='one_ji' id = 'k_1'>1km</div>
+			<div class='one_ji' id = 'k_3'>3km</div>
+			<div class='one_ji' id = 'k_5'>5km</div>
+			<div class='one_ji' id = 'k_10')>10km</div>
+			<div class='one_ji'>全城</div>
+		</div>-->
+
+		{foreach from=$info1 item=value key=key name=name}
+		   <!--<div id='left_change_{$key}' {if !$smarty.foreach.name.first}style='display:none'{/if} class="xiangcun">{if $info2[$key]}{foreach from=$info2[$key] item=val key=key2}<div class='one_ji' onclick="setAreaCookie(4,{$val.region_id},'');">{$val.region_name}</div>{/foreach}{/if}</div>-->
+                       <div id='left_change_{$key}' {if $value.region_id neq $smarty.cookies.region_3}style='display:none'{/if} class="xiangcun">{if $info2[$key]}<div class='one_ji' onclick="setAreaCookie(4,0,'');">全部</div>{foreach from=$info2[$key] item=val key=key2}<div class='one_ji' onclick="setAreaCookie(4,{$val.region_id},'');">{$val.region_name}</div>{/foreach}{/if}</div>
+		{/foreach}
+
+	</div>	
+ </div>
+ </div>
+ <div class="close_div" onClick='closetanchu2()'></div>
+ </div>
+<script>
+function opentanchu1(){
+	$('#fenleitanchu').show();
+	$('#quyutanchu').hide();
+	$('html').addClass("sidebar-move");
+	}
+function closetanchu1(){
+	$('#fenleitanchu').hide();
+		$('html').removeClass("sidebar-move");
+	}
+function opentanchu2(){
+	$('#quyutanchu').show();
+	$('#fenleitanchu').hide();
+	$('html').addClass("sidebar-move");
+
+	}
+function closetanchu2(){
+	$('#quyutanchu').hide();
+	$('html').removeClass("sidebar-move");
+	}
+function setTabQuyu(name,cursel){
+	$('.district').removeClass('select');
+	$('#'+name+cursel).addClass('select');
+	$('.xiangcun').removeClass('con').hide();
+	$('#'+name+"_"+cursel).addClass('con').show();
+	setAreaCookie(3,cursel,name);
+
+}
+
+function setAreaCookie(level,value,name){
+
+	document.cookie="region_"+level+"="+value;
+	if(level == 3){
+	//三级城市设置cookie
+		if($('#'+name+"_"+value).html() == ''){
+			document.cookie="region_4=0";
+			top.location.href=top.location.href;
+		}
+	}
+	if(level == 4){
+		top.location.href=top.location.href;
+	}
+}
+
+</script>

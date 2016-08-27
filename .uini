@@ -1,0 +1,1 @@
+open_basedir="F:\NPHP\workspace\wxkzf\;F:\NPHP\upupw\memcached\;F:\NPHP\upupw\phpmyadmin\;F:\NPHP\upupw\temp\;C:\Windows\Temp\"

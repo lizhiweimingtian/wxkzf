@@ -1,0 +1,112 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--{if $brands.1 || $price_grade.1 || $filter_attr_list}-->
+<script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/jquery.nicescroll.min.js"></script>
+<script>
+  $(function () {
+    //滚动条
+    $(".horiz_filter_tab_div").niceScroll({ cursorwidth: 0,cursorborder:0 });
+  })
+</script>
+<style>
+div.horiz_filter_tab_div {
+	width: 100%;
+	margin: 0;
+	padding: 7px 0 0;
+	background: #fff;
+	border-top: 1px solid #ccc;
+}
+ul.horiz_filter_tab_box {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	display: block;
+	z-index: 9999;
+}
+ul.horiz_filter_tab_box li.new-ul-li {
+	min-width: 70px;
+	float: left;
+	text-align: center;
+	margin-left: 10px;
+	padding-bottom: 7px;
+	border-radius: 5px 5px 0 0;
+	border: 1px solid #fff;
+}
+ul.horiz_filter_tab_box li.new-ul-li .new-li-a {
+	border-radius: 5px;
+	background: #f5f5f5;
+	border: 1px solid #f5f5f5;
+}
+ul.horiz_filter_tab_box li.new-ul-li.click {
+	border: 1px solid #ccc;
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+ul.horiz_filter_tab_box li.new-ul-li.click .new-li-a {
+	background: #fff;
+	border-radius: 5px 5px 0 0;
+	position: relative;
+	z-index: 99999;
+	padding-bottom: 13px;
+	color: #f02387;
+	border: 1px solid #fff;
+}
+ul.horiz_filter_tab_box li.new-ul-li .new-li-a {
+	display: block;
+	padding: 6px 10px;
+	color: #787878;
+}
+ul.horiz_filter_tab_box li.new-ul-li .new-li-a.on {
+	border: 1px solid #ee2222;
+	background: url(themesmobile/68ecshopcom_mobile/img/x.png) no-repeat right bottom #fff;
+	background-size: 20px 16px;
+	color: #ee2222;
+}
+ul.horiz_filter_tab_box li .new-pop-sel {
+	position: absolute;
+	left: 0;
+	top: 88px;
+	width: 100%;
+	height: auto;
+	background-color: #fff;
+	z-index: 9999;
+	border-top: 1px solid #ccc;
+	overflow: auto;
+	padding:10px 0px ;
+}
+ul.horiz_filter_tab_box li .new-pop-sel a {
+	color: #787878;
+}
+ul.horiz_filter_tab_box li .new-pop-sel ul li {
+	width: 45%;
+	padding-left: 5%;
+	float: left;
+	text-align: left;
+}
+ul.horiz_filter_tab_box li .new-pop-sel li a.on, ul.horiz_filter_tab_box li .new-pop-sel li a.on span {
+	background: #fff;
+	color: #ee2222;
+}
+</style>
+<!-- {/if} -->
+<div class="filter" id="con_one_1" >
+  <ul class="filter-inner">
+    <li id='horiz_sort_label_goods_id' {if $pager.sort eq 'goods_id'} class="filter-cur"{/if}>{if $script_name eq 'category'}
+      <input type='hidden' name='sort' id='sort' value=''/>
+      <input type='hidden' name='order' id='order' value=''/>
+      <a href="javascript:void(0);" onclick="horiz_select_order_by('goods_id');">{else}<a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=goods_id&order=<!-- {if $pager.sort == 'goods_id' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list" >{/if}上架<i id='horiz_sort_mark_goods_id' class="<!-- {if $pager.sort == 'goods_id' && $pager.order == 'DESC'} -->f-ico-arrow-u<!-- {else} -->f-ico-arrow-d<!-- {/if} -->"></i></a></li>
+    <li id='horiz_sort_label_last_update' {if $pager.sort eq 'last_update'} class="filter-cur"{/if}>{if $script_name eq 'category'}<a href="javascript:void(0);" onclick="horiz_select_order_by('last_update');">{else}<a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=last_update&order=<!-- {if $pager.sort == 'last_update' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list" >{/if}更新<i id='horiz_sort_mark_last_update' class="<!-- {if $pager.sort == 'last_update' && $pager.order == 'DESC'} -->f-ico-arrow-u<!-- {else} -->f-ico-arrow-d<!-- {/if} -->"></i></a></li>
+    <li id='horiz_sort_label_salenum' {if $pager.sort eq 'salenum'} class="filter-cur"{/if}>{if $script_name eq 'category'}<a href="javascript:void(0);" onclick="horiz_select_order_by('salenum');">{else}<a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=salenum&order=<!-- {if $pager.sort == 'salenum' && $pager.order == 'DESC'} -->ASC<!-- {else} -->DESC<!-- {/if} -->#goods_list" >{/if}销量<i id='horiz_sort_mark_salenum' class="<!-- {if $pager.sort == 'salenum' && $pager.order == 'DESC'} -->f-ico-arrow-u<!-- {else} -->f-ico-arrow-d<!-- {/if} -->"></i></a></li>
+    <li id='horiz_sort_label_shop_price' {if $pager.sort eq 'shop_price'} class="filter-cur"{/if}>{if $script_name eq 'category'}<a href="javascript:void(0);" onclick="horiz_select_order_by('shop_price');">{else}<a href="{$script_name}.php?category={$category}&display={$pager.display}&brand={$brand_id}&price_min={$price_min}&price_max={$price_max}&filter_attr={$filter_attr}&page={$pager.page}&sort=shop_price&order=<!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->DESC<!-- {else} -->ASC<!-- {/if} -->#goods_list">{/if}价格<i id='horiz_sort_mark_shop_price' class="<!-- {if $pager.sort == 'shop_price' && $pager.order == 'ASC'} -->f-ico-arrow-d<!-- {else} -->f-ico-arrow-u<!-- {/if} -->"></i></a></li>
+  </ul>
+</div>
+<div class="filter-placeholder" style="height: 39px; display: none;"></div>
+{if $goods_list}
+<div id="J_ItemList" style="opacity: 1;" class="srp m-animation album">
+  <div class="product single_item info"> </div>
+  <a href="javascript:;" class="get_more"><img src='../themesmobile/68ecshopcom_mobile/images/category/loader.gif'></a> </div>
+{else}
+<ul class="new-mu_l2w">
+  <div class="new-cp-prom2"> <strong class="new-span-block">抱歉暂时没有相关结果，换个筛选条件试试吧</strong> </div>
+</ul>
+{/if}

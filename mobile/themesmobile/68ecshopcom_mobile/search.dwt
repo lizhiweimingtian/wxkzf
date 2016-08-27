@@ -1,0 +1,119 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>{$page_title}</title>
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/public.css"/>
+<link rel="stylesheet" type="text/css" href="themesmobile/68ecshopcom_mobile/css/category_list.css"/>
+<script type="text/javascript" src="themesmobile/68ecshopcom_mobile/js/jquery.js"></script>
+{insert_scripts files='jquery.json.js,transport.js,index.js'}
+{insert_scripts files='common.js'}
+
+</head>
+<body>
+<!----------------------------------header----------------------------------->
+<section class="_pre" >
+<header>
+<section class="header" >
+     <div class="h-left"><a class="sb-back" href="javascript:history.back(-1)" title="返回"></a></div>
+    <div class="h-mid">
+    <!-- {if $intromode eq 'best'} -->
+   {$lang.best_goods}
+    <!-- {elseif $intromode eq 'new'} -->
+   {$lang.new_goods}
+   <!-- {elseif $intromode eq 'hot'} -->
+   {$lang.hot_goods}
+   <!-- {elseif $intromode eq 'promotion'} -->
+   {$lang.promotion_goods}
+   <!-- {else} -->
+   {$lang.search_result}
+         <!-- {/if} -->
+          </div>
+<div class="h-right">
+            <aside class="top_bar">
+              <div onClick="show_menu();$('#close_btn').addClass('hid');" id="show_more"><a href="javascript:;"></a> </div>
+            </aside>
+          </div>
+
+<!-- #BeginLibraryItem "/library/up_menu.lbi" --><!-- #EndLibraryItem --> <!--弹出菜单-->
+</section></header>
+
+
+<section>
+
+{$page.display}
+<div class="touchweb-com_searchListBox {if $pager.display == 'grid'}openList{/if}" id="goods_list">
+{if $display neq 'shop_list'}
+<section class="filtrate_term" id="product_sort" style="width: 100%;">
+<div class="list_top" >
+    	<div class="ub" >
+         <div class="list_tab ub ub-ac ub-pc" style="width:45%" onclick="opentanchu1()"><div id="sort" class="list_tabcon">
+		 {if $pager.search.sort == 'shop_price'}{if  $pager.search.order == 'ASC'}价格最低{else}价格最高{/if}{/if}
+         {if $pager.search.sort == 'salenum'}{if $pager.search.order == 'ASC'}销量最低{else}销量最高{/if}{/if}
+         {if $pager.search.sort == 'last_update'}{if $pager.search.order == 'ASC'}最近更新{else}较早更新 {/if}{/if}
+         {if $pager.search.sort == 'goods_id'}{if $pager.search.order == 'ASC'}较早上架{else}最新上架{/if}{/if}
+            </div></div>
+            <div class="list_tab ub ub-ac ub-pc" style="width:45%" onClick="opentanchu2()" ><div id="quyu" class="list_tabcon">{$areaName}</div></div>
+            <!--<div class="list_tab ub ub-ac ub-pc" style="display:none;">
+            <div class="list_tabcon" style="background:none; padding-right:0px; " >	
+            	<input type="checkbox" class="clsCheckBox" onclick="order_by()" id="by"/>
+				<label for="by" class="clsCheckBox-l" onclick="checkbox()"><img id="checkimg" src="themesmobile/68ecshopcom_mobile/images/category/cbx1.png"/> 离我最近</label>
+            </div>
+            </div>-->
+            <div class="list_tab ub ub-ac ub-pc" style="width:10%; background:none"><a href="javascript:;" class="show_type {if $pager.display == 'grid'} show_list{/if}">&nbsp;</a></div>
+        </div>
+        </div>
+        
+    <div id="fenleitanchu" class='zitidian_div' style="display:none">
+     <div class="f_bg fenleilist" style="overflow-y:scroll; height:auto">
+            <div id="menu0" onClick="javascript:location.href='search.php?{foreach from=$pager.search key=key item=item}{if $key neq "sort" and $key neq "order"}{$key}={$item}&{/if}{/foreach}page={$pager.page}&sort=shop_price&order={if $pager.search.order eq 'DESC'}ASC{else}DESC{/if}'">价格</div>
+            <div id="menu1" onClick="javascript:location.href='search.php?{foreach from=$pager.search key=key item=item}{if $key neq "sort" and $key neq "order"}{$key}={$item}&{/if}{/foreach}page={$pager.page}&sort=salenum&order={if $pager.search.order eq 'DESC'}ASC{else}DESC{/if}'">销量</div>
+            <div id="menu2" onClick="javascript:location.href='search.php?{foreach from=$pager.search key=key item=item}{if $key neq "sort" and $key neq "order"}{$key}={$item}&{/if}{/foreach}page={$pager.page}&sort=last_update&order={if $pager.search.order eq 'DESC'}ASC{else}DESC{/if}'">更新</div>
+            <div id="menu3" onClick="javascript:location.href='search.php?{foreach from=$pager.search key=key item=item}{if $key neq "sort" and $key neq "order"}{$key}={$item}&{/if}{/foreach}page={$pager.page}&sort=goods_id&order={if $pager.search.order eq 'DESC'}ASC{else}DESC{/if}'">最新</div>
+     </div>
+     <div class="close_div" onClick="closetanchu1()"></div>    
+ </div>
+ 
+{insert name='select_region_category'}
+	
+
+</section>
+{/if}
+{if $display eq 'shop_list'}
+<!-- #BeginLibraryItem "/library/search_list.lbi" --><!-- #EndLibraryItem -->
+{else}
+<!-- #BeginLibraryItem "/library/search_goods_list.lbi" --><!-- #EndLibraryItem -->
+{/if}
+   <script type="text/javascript">
+     
+        var btn_buy = "{$lang.btn_buy}";
+        var is_cancel = "{$lang.is_cancel}";
+        var select_spe = "{$lang.select_spe}";
+        </script>
+</div>
+</ul>
+</div>
+</section> 
+
+<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+<!-- #BeginLibraryItem "/library/footer_nav.lbi" --><!-- #EndLibraryItem -->
+</section>
+<script>
+   $('.show_type').bind("click", function() {
+    if ($('#goods_list').hasClass('openList')){
+	$('#goods_list').removeClass('openList');
+	$(this).removeClass('show_list');
+	}
+	else
+	{
+	$('#goods_list').addClass('openList');	
+	$(this).addClass('show_list');
+	}
+});
+</script>
+</body>
+</html>

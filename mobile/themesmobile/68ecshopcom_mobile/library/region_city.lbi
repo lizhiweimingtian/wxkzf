@@ -1,0 +1,147 @@
+{* 代码增加_start  BY  morestock_morecity *}
+<script>  
+$(function () {
+    
+    var p = {$smarty.cookies.region_1};
+    var c = {$smarty.cookies.region_2};
+    var d = {$smarty.cookies.region_3};
+    var x = {$smarty.cookies.region_4};
+
+	var i = (p<=0) ? 0 : Math.floor($('#treelist>li[value="1"]').find("span[name='{$smarty.cookies.region_1}']").parent().index()),  
+	j = (c<=0) ? 0 : Math.floor($('#treelist>li[value="1"]').eq(i).find('ul li[value="2"]').find("span[name='{$smarty.cookies.region_2}']").parent().index());  
+	hh = (d<=0) ? 0 : Math.floor($('#treelist>li[value="1"]').eq(i).find('ul li[value="2"]').eq(j).find('ul li[value="3"]').find("span[name='{$smarty.cookies.region_3}']").parent().index());
+	mm = (x<=0) ? 0 : Math.floor($('#treelist>li[value="1"]').eq(i).find('ul li[value="2"]').eq(j).find('ul li[value="3"]').eq(hh).find('ul li[value="4"]').find("span[name='{$smarty.cookies.region_4}']").parent().index());
+	var defaultValue1 = '';
+	if(i>=0){
+	 defaultValue1= [i];
+	}
+	if(j>=0){
+	 defaultValue1= [i,j];
+	}
+	if(hh>=0){
+	 defaultValue1= [i,j,hh];
+	}
+	if(mm>=0){
+	 defaultValue1=[i,j,hh,mm];
+	}
+		
+    $("#treelist").mobiscroll().treelist({  
+
+        theme: "ios",  
+        lang: "zh",  
+	mode : "scroller",
+        display : "bottom",
+	placeholder: '{$showname}',
+        defaultValue: defaultValue1,  
+      formatResult: function (array) { //返回自定义格式结果	
+	var result = '';
+        result = $('#treelist>li[value="1"]').eq(array[0]).children('span').text() 
+		+ 
+		$('#treelist>li[value="1"]').eq(array[0]).find('ul li[value="2"]').eq(array[1]).children('span').text()
+		+
+		$('#treelist>li[value="1"]').eq(array[0]).find('ul li[value="2"]').eq(array[1]).find('ul li[value="3"]').eq(array[2]).children('span').text()
+		 + 
+		$('#treelist>li[value="1"]').eq(array[0]).find('ul li[value="2"]').eq(array[1]).find('ul li[value="3"]').eq(array[2]).find('ul li[value="4"]').eq(array[3]).children('span').text();  
+	
+		var pval = $('#treelist>li[value="1"]').eq(array[0]).children('span').attr('name');
+		var cval = $('#treelist>li[value="1"]').eq(array[0]).find('ul li[value="2"]').eq(array[1]).children('span').attr('name');
+		var dval = $('#treelist>li[value="1"]').eq(array[0]).find('ul li[value="2"]').eq(array[1]).find('ul li[value="3"]').eq(array[2]).children('span').attr('name');
+		var xval = $('#treelist>li[value="1"]').eq(array[0]).find('ul li[value="2"]').eq(array[1]).find('ul li[value="3"]').eq(array[2]).find('ul li[value="4"]').eq(array[3]).children('span').attr('name');
+
+		document.cookie = (typeof(pval) == "undefined") ? "region_1=0" : "region_1="+pval;
+		document.cookie = (typeof(cval) == "undefined") ? "region_2=0" : "region_2="+cval;
+		document.cookie = (typeof(dval) == "undefined") ? "region_3=0" : "region_3="+dval;
+		document.cookie = (typeof(xval) == "undefined") ? "region_4=0" : "region_4="+xval;
+		return result;
+	},
+	onSelect:function(array){
+		top.location.reload();
+	}  
+    });  
+})   
+</script>  
+{if $info['province']}
+<ul id="treelist" style="display:none;">
+{foreach from=$info['province'] item=pvalue key=pkey}
+      <li  value="{$pvalue.region_type}"><span  name="{$pvalue.region_id}" value="{$pvalue.region_type}" title="{$pvalue.region_name}">{$pvalue.region_name}</span>
+      {if $pvalue['city']}
+        <ul>
+	{foreach from=$pvalue['city'] item=cvalue key=ckey}
+          <li value="{$cvalue.region_type}"><span  name="{$cvalue.region_id}" value="{$cvalue.region_type}" title="{$cvalue.region_name}">{$cvalue.region_name}</span>
+            {if $cvalue['district']}
+	    <ul>
+	     {foreach from=$cvalue['district'] item=dvalue key=dkey}
+              <li value="{$dvalue.region_type}"><span name="{$dvalue.region_id}" value="{$dvalue.region_type}" title="{$dvalue.region_name}">{$dvalue.region_name}</span>
+		      {if $dvalue['xiangcun']}
+		      <ul>
+		      {foreach from=$dvalue['xiangcun'] item=xvalue key=xkey}
+		      <li value="{$xvalue.region_type}"><span  name="{$xvalue.region_id}" value="{$xvalue.region_type}" title="{$xvalue.region_name}">{$xvalue.region_name}</span></li>
+		      {/foreach}
+		      </ul>
+		      {/if}
+              </li>
+	      {/foreach}
+            </ul>
+	    {/if}
+          </li>
+	{/foreach}
+        </ul>
+      {/if}
+      </li>
+{/foreach}
+    </ul>
+{/if} 
+    <!--
+<div style="position:relative;height:25px;line-height:25px; display:">
+     <div class="selectcity">
+		<div class="province" id="province_box">
+		{foreach from=$levels key=did item=infovalue}
+			<div id="region_{$did}" class="province">
+			{if $levelsinfo[$did]}
+			<select name="region_{$did}"  onchange="get_regions({$did}, this.value)">
+			<option value="0">请选择</option>
+				{foreach from=$levelsinfo[$did] key=iid item=infos} 
+					<option value="{$iid}" {if $divlevels[$did] == $iid} selected {/if}>{$infos}</option>
+				{/foreach}
+			</select>
+			{/if}
+			</div>
+		{/foreach}
+
+		</div>
+	</div>
+</div>
+
+
+
+<div style="position:relative;height:25px;line-height:25px;display:none">
+     <div class="selectcity">
+		<div style="float:left;font-size:12px;font-weight:bold;">
+		{$address_title}
+		</div>
+		<div class="province" onmouseover="document.getElementById('citybox_childmenu').style.display='block';this.className='province_cur';"  id="province_box">
+		<font id="province">{$fullname}</font>
+		<input type="hidden" name="store_province_id" id="store_province_id" value="">            
+		</div>
+	</div>
+
+	 <div class="childmenu" id="citybox_childmenu"  >
+	 <div class="citybox_close" onclick="javascript:document.getElementById('citybox_childmenu').style.display='none';document.getElementById('province_box').className='province';"></div>	
+	 <div class="cityul">
+	 {foreach from=$shownames key=pid item=names}
+	  <div class={if $pid eq 1}"licur"{else}"li"{/if} onclick="javascript:get_regions({$pid}, 0)" id="city_li_{$pid}" style="display:{if $names}block{else}none{/if}">{$names}<i></i></div>
+	 {/foreach}
+	  </div>
+	  <div style="clear:both;"></div>
+	  {foreach from=$divlevels key=did item=levels}
+	  <div class="childli" id="city_box_{$did}" style="display:{if $did eq 1}block{else}none{/if}">
+
+		{foreach from=$levelsinfo[$levels] key=iid item=infos}  
+		   <a href="javascript:void(0);" onclick="get_regions({$did}, '{$iid}');" style="text-decoration:none;">{$infos}</a>
+		{/foreach}
+		
+	  </div>
+	  {/foreach}	   	   
+	</div>
+</div>-->
+{* 代码增加_end  BY  morestock_morecity *}

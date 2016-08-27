@@ -1,0 +1,15 @@
+
+			<!--底部开始-->
+			<div id='bottom'>
+				<div id="botnei">
+
+					<p><a href="#">联系我们</a>  | <a href="#">帮助信息</a> | <a href="#">友情链接</a> </p>
+					<p>COPYRIGHT©2015    版权所有 中房京宝（北京）电子商务有限公司<img src="themes/68ecshopcom_360buy/images/gerenzx/pic.gif"/>京公安网备13002055号</p>
+					<p><img src="themes/68ecshopcom_360buy/images/gerenzx/why.gif" width="12" height="12" alt="疑问图标" align="absmiddle">&nbsp;&nbsp;如有疑问请您联系TEL：010-8888888-8888</p>
+
+				</div>
+			</div>
+			<!--底部结束-->
+		</div>
+	</body>
+</html>

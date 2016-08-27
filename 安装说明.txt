@@ -1,0 +1,13 @@
+已测：后台不显示版本号是因为把函数屏蔽了，生不成静态，请查找html（）函数：把return ""注销掉就可以了
+
+安装教程：
+导入数据库sasadown.sql更改data文件夹内config文件为自己的数据库信息
+更改mobile/supplier/data文件夹内config文件为自己的数据库信息
+
+网站后台 /admin  用户名admin  密码 sasadown168   
+wap后台管理  /mobile/admin     用户名admin    密码sasadown168
+手机wap商家后台   /mobile/supplier   用户名test    密码test888
+
+----------------------------------------------------------------------
+
+
