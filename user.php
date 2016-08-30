@@ -64,6 +64,12 @@ $not_login_arr[] = 'send_mobile_code';
 //hzj add begin 2016/08/15
 $ui_arr[] = 'team_manage';
 $ui_arr[] = 'team_index';
+$ui_arr[] = 'scoretran';
+$ui_arr[] = 'tgzc';
+$ui_arr[] = 'activation';
+$ui_arr[] = 'scorebuy';
+$ui_arr[] = 'scoredetails';
+$ui_arr[] = 'scoretranone';
 //hzj add end 2016/08/15
 /* 未登录处理 */
 if(empty($_SESSION['user_id']) && $action != 're_validate_email' && $action != 'valid_email')
@@ -5580,4 +5586,168 @@ function get_inv_complete_region ($order_id, $inv_type)
 	}
 }
 
+/*积分转账页面*/
+ function action_scoretran(){
+        //获取全局变量
+            $user = $GLOBALS['user'];
+            $_CFG = $GLOBALS['_CFG'];
+            $_LANG = $GLOBALS['_LANG'];
+            $smarty = $GLOBALS['smarty'];
+            $db = $GLOBALS['db'];
+            $ecs = $GLOBALS['ecs'];
+            $user_id = $_SESSION['user_id'];
+            
+            if(!isset($_POST["submit"])){
+                $user_id = $_SESSION['user_id'];
+                $smarty = $GLOBALS['smarty'];
+                $sql="select rank_points from " . $ecs->table('users') . " where user_id='" . $user_id . "' ";
+                //exit($sql);
+                $sub_one = $db->getRow($sql);
+               /// var_dump($sub_one);
+               // exit();
+                $smarty->assign("sub_one",$sub_one);
+            }else{
+               $user_id = $_SESSION['user_id'];
+               $smarty = $GLOBALS['smarty'];
+               $scorenow = isset($_POST['scorenow']) ? $_POST['scorenow'] : '';
+               $scoreout = isset($_POST['scoreout']) ? $_POST['scoreout'] : '';
+               $username = isset($_POST['username']) ? $_POST['username'] : '';
+               $sql = "UPDATE " .$ecs->table('users')." SET rank_points = rank_points - $scoreout where user_id='".$user_id."'";
+               $rsuser = $db->query($sql);
+               if($rsuser){
+                   $sql="UPDATE " .$ecs->table('users')." SET rank_points = rank_points + $scoreout where user_name='".$username."'";
+                   $db->query($sql);
+                   $sql = "insert into ".$ecs->table('hzj_indetail')." (user_id,state,indetail,ntime,c) values('".$user_id."',0,'".$scoreout*(-1)."',now(),1)";
+                   $db->query($sql);
+                   $sql = "select user_id from ".$ecs->table('users')." where user_name ='".$username."'";
+                   $rsu = $db->getOne($sql);
+                   //var_dump($rsu);
+                   //exit();
+                   $sql = "insert into ".$ecs->table('hzj_indetail')." (user_id,state,indetail,ntime,c) values('".$rsu."',0,'".$scoreout."',now(),2)";
+                   $db->query($sql);
+                   show_message('转账成功！');
+               }else{
+                   show_message('网络故障,请稍后重试');
+               }
+            }
+           $smarty->display("scoretran.dwt");
+       }
+       
+/*推广注册的页面*/
+ function action_tgzc(){
+     //获取全局变量
+            $user = $GLOBALS['user'];
+            $_CFG = $GLOBALS['_CFG'];
+            $_LANG = $GLOBALS['_LANG'];
+            $smarty = $GLOBALS['smarty'];
+            $db = $GLOBALS['db'];
+            $ecs = $GLOBALS['ecs'];
+            $user_id = $_SESSION['user_id'];
+            
+            $smarty->display("tgzc.dwt");
+ }
+ 
+ /*激活页面*/
+ function action_activation(){
+     //获取全局变量
+            $user = $GLOBALS['user'];
+            $_CFG = $GLOBALS['_CFG'];
+            $_LANG = $GLOBALS['_LANG'];
+            $smarty = $GLOBALS['smarty'];
+            $db = $GLOBALS['db'];
+            $ecs = $GLOBALS['ecs'];
+            $user_id = $_SESSION['user_id'];
+            
+            if(!isset($_POST["submit"])){
+                $user_id = $_SESSION['user_id'];
+                $smarty = $GLOBALS['smarty'];
+                $sql="select activeStatus from " . $ecs->table('hzj_user') . " where user_id='" . $user_id . "' ";
+                $act_rs=$db->getOne($sql);
+
+                $smarty->assign("act_rs",$act_rs); 
+            }else{
+                $user_id = $_SESSION['user_id'];
+                $smarty = $GLOBALS['smarty'];
+                $sql="update " . $ecs->table('hzj_user') . " set activeStatus = activeStatus + 1 where user_id='" . $user_id . "' ";
+                $act_rs=$db->query($sql);
+                if($act_rs){
+                    show_message("激活成功");
+                }else{
+                    show_message("网络故障,稍后重试");
+                }
+                $smarty->assign("act_rs",$act_rs); 
+          }
+            $smarty->display("activation.dwt");
+ }
+ 
+ /*购买积分页面*/
+ function action_scorebuy(){
+    //获取全局变量
+        $user = $GLOBALS['user'];
+        $_CFG = $GLOBALS['_CFG'];
+        $_LANG = $GLOBALS['_LANG'];
+        $smarty = $GLOBALS['smarty'];
+        $db = $GLOBALS['db'];
+        $ecs = $GLOBALS['ecs'];
+        $user_id = $_SESSION['user_id']; 
+        
+        if(!isset($_POST["submit"])){
+            $smarty->display('scorebuy.dwt');
+        }else{
+            $scorebuy = isset($_POST["scorebuy"]) ? $_POST["scorebuy"] : "";
+            $sql = "UPDATE " .$ecs->table('users')." SET rank_points = rank_points + $scorebuy where user_id = '".$user_id."'";
+            $rsc = $db->query($sql);
+            if($rsc){
+                show_message("积分购买成功");
+            }else{
+                 show_message("网络故障,稍后重试");
+            }
+        }
+        
+
+ }
+ 
+ /*积分详情列表页*/
+ function action_scoredetails(){
+     //获取全局变量
+        $user = $GLOBALS['user'];
+        $_CFG = $GLOBALS['_CFG'];
+        $_LANG = $GLOBALS['_LANG'];
+        $smarty = $GLOBALS['smarty'];
+        $db = $GLOBALS['db'];
+        $ecs = $GLOBALS['ecs'];
+        $user_id = $_SESSION['user_id']; 
+        
+        //①获得第几页
+        $page = isset($_REQUEST['page']) && intval($_REQUEST['page']) > 0 ? intval($_REQUEST['page'])  : 1;
+        //②分页大小
+        $size = 10;
+        //③总的记录数，你可以用sql查询出来
+        $sql = "SELECT COUNT(*) FROM  ".$ecs->table("hzj_indetail")."";
+        $record_count = $GLOBALS['db']->getOne($sql);
+        //④生成分页
+        $pager = get_pager('user.php ?act=scoredetails', array(), $record_count, $page,10);
+        //⑤赋值到模板
+        $smarty->assign('pager', $pager);
+        
+        $sql = "select * from ".$ecs->table("hzj_indetail")." where user_id = '". $user_id ."' order by ntime desc limit 0,10 ";
+        $rs = $db->getAll($sql);
+       // $res = $db->selectLimit($sql, $size, ($page - 1) * $size);
+        $smarty->assign("rs",$rs);
+        
+        $smarty->display('scoredetails.dwt');
+ }
+ 
+ function action_scoretranone(){
+     //获取全局变量
+        $user = $GLOBALS['user'];
+        $_CFG = $GLOBALS['_CFG'];
+        $_LANG = $GLOBALS['_LANG'];
+        $smarty = $GLOBALS['smarty'];
+        $db = $GLOBALS['db'];
+        $ecs = $GLOBALS['ecs'];
+        $user_id = $_SESSION['user_id']; 
+        
+        $smarty->display("scoretranone.dwt");
+ }
 ?>

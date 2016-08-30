@@ -1,4 +1,4 @@
-<?php exit;?>a:3:{s:8:"template";a:18:{i:0;s:53:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/index.dwt";i:1;s:72:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/page_headerindex.lbi";i:2;s:73:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/user_header_index.lbi";i:3;s:73:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/user_header_right.lbi";i:4;s:64:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/head_nav.lbi";i:5;s:66:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/header_tan.lbi";i:6;s:65:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/index_ad3.lbi";i:7;s:66:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/order_type.lbi";i:8;s:68:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/cat_articles.lbi";i:9;s:70:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/index_ad_group.lbi";i:10;s:67:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/ad_position.lbi";i:11;s:66:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/stores_tab.lbi";i:12;s:65:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/cat_goods.lbi";i:13;s:72:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/page_footerindex.lbi";i:14;s:64:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/site_bar.lbi";i:15;s:72:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/customer_service.lbi";i:16;s:65:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/vote_list.lbi";i:17;s:64:"E:/wamp/www/wxkzf/themes/68ecshopcom_360buy/library/left_bar.lbi";}s:7:"expires";i:1472305372;s:8:"maketime";i:1472301772;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php exit;?>a:3:{s:8:"template";a:18:{i:0;s:48:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/index.dwt";i:1;s:67:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/page_headerindex.lbi";i:2;s:68:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/user_header_index.lbi";i:3;s:68:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/user_header_right.lbi";i:4;s:59:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/head_nav.lbi";i:5;s:61:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/header_tan.lbi";i:6;s:60:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/index_ad3.lbi";i:7;s:61:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/order_type.lbi";i:8;s:63:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/cat_articles.lbi";i:9;s:65:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/index_ad_group.lbi";i:10;s:62:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/ad_position.lbi";i:11;s:61:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/stores_tab.lbi";i:12;s:60:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/cat_goods.lbi";i:13;s:67:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/page_footerindex.lbi";i:14;s:59:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/site_bar.lbi";i:15;s:67:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/customer_service.lbi";i:16;s:60:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/vote_list.lbi";i:17;s:59:"D:/WWW/wxkzf/themes/68ecshopcom_360buy/library/left_bar.lbi";}s:7:"expires";i:1472530104;s:8:"maketime";i:1472526504;}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta name="Generator" content="ECSHOP v4_0" />
@@ -7,10 +7,10 @@
 <meta name="Description" content="68ecshop-多城市多仓库电商系统-综合网购首选-正品低价、品质保障、配送及时、轻松购物!" />
 <meta name="renderer" content="webkit">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<title>京东商城  </title>
+<title>懿美商城  </title>
 <link rel="shortcut icon" href="favicon.ico" />
 <link rel="icon" href="animated_favicon.gif" type="image/gif" />
-<link rel="alternate" type="application/rss+xml" title="RSS|京东商城  " href="feed.php" />
+<link rel="alternate" type="application/rss+xml" title="RSS|懿美商城  " href="feed.php" />
 <link rel="stylesheet" href="themes/68ecshopcom_360buy/css/index.css">
 <link rel="stylesheet" type="text/css" href="themes/68ecshopcom_360buy/css/shopne_commin.css" />
 <script type="text/javascript" src="themes/68ecshopcom_360buy/js/jquery-1.9.1.min.js"></script>
@@ -153,8 +153,7 @@ function hide_qcord(){
     </ul>
   </div>
 </div>
-</div>
- 
+</div> 
 <div id="header">
   <div class="headerLayout">
     <div class="headerCon ">
@@ -1617,8 +1616,7 @@ $('.search-type li').click(function() {
       </p>
     </div>
   </div>
-</div>
-    <div class="right-sidebar"> <div class="order_type">
+</div>    <div class="right-sidebar"> <div class="order_type">
   <div class="title">四种方式下订单</div>
   <ul>
     <li>
@@ -1639,8 +1637,7 @@ $('.search-type li').click(function() {
       <i>4</i>支持手机APP下订单 
     </li>
   </ul>
-</div>
-      <div class="proclamation">
+</div>      <div class="proclamation">
         <ul class="tabs-nav">
           <li class="tabs-selected">
             <h3>招商入驻</h3>
@@ -1654,8 +1651,7 @@ $('.search-type li').click(function() {
 <div class="tabs-panel tabs-hide">
   <ul class="mall-news">
       </ul>
-</div>
- </div>
+</div> </div>
     </div>
   </div>
   <script type="text/javascript">
@@ -1679,8 +1675,7 @@ $(document).ready(function(){
     <li class="b"> 554fcae493e564ee0dc75bdf2ebf94caads|a:3:{s:4:"name";s:3:"ads";s:2:"id";s:1:"4";s:3:"num";s:1:"1";}554fcae493e564ee0dc75bdf2ebf94ca </li>
     <li class="b"> 554fcae493e564ee0dc75bdf2ebf94caads|a:3:{s:4:"name";s:3:"ads";s:2:"id";s:1:"5";s:3:"num";s:1:"1";}554fcae493e564ee0dc75bdf2ebf94ca </li>
   </ul>
-</div>
-  <div class="blank5"></div>
+</div>  <div class="blank5"></div>
   <div class="fp-brand-rec main-container" id="J_FpBrandRec"> <a class="brand-title" href="stores.php">热门品牌</a>
     <div class="brand-content clearfix">
       <div class="module">
@@ -1711,8 +1706,7 @@ $(document).ready(function(){
   <li class="tabs-selected"><i class="arrow"></i>
     <h3>新品上市</h3>
   </li>
-</ul>
-      <div class="tabs-panel sale-goods-list tabs-hide">
+</ul>      <div class="tabs-panel sale-goods-list tabs-hide">
         <ul>
                   </ul>
       </div>
@@ -1903,8 +1897,7 @@ Move(".left_1",".right_1",".yyyy_1",".anli","10");
   </div>
 </div>
 </div>
-<div class="blank5"></div>
- 
+<div class="blank5"></div> 
  
  
  
@@ -1998,7 +1991,7 @@ function(){
               <p class="nav_bottom">
                     </p>
       <p>
-      <a href="javascript:;">&copy; 2005-2016 京东商城 版权所有，并保留所有权利。</a> <a href="javascript:;"> </a>
+      <a href="javascript:;">&copy; 2005-2016 懿美商城 版权所有，并保留所有权利。</a> <a href="javascript:;"> </a>
       <a href="javascript:;"></a>
         <a href="javascript:;"></a>
       </p>
@@ -2015,8 +2008,7 @@ $("img").lazyload({
 	 skip_invisible : true,
 	 failure_limit : 20
 });
-</script>
- 
+</script> 
 <div class="sidebar-nav" style="height: 100%; top: 0px; bottom: auto;">
   <div class="mods">
     <div class="middle-items">

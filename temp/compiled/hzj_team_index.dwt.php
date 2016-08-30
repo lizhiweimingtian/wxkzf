@@ -7,7 +7,7 @@
 		<meta name="Description" content="<?php echo $this->_var['description']; ?>" />
 		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
 		
-		<title>中房</title>
+		<title><?php echo $this->_var['page_title']; ?></title>
 		
 		
 		
@@ -150,7 +150,7 @@
 			#mainleft p{margin-left:50px;}
 			
 			/*主体框内右边列表部分*/
-			#mainright{
+			#mainright,#ifr{
 						width:1030px;
 						height:560px;
 						float:left;
@@ -268,7 +268,7 @@
 			<div id="top">
 				<div id="topnei">
 					<div id="topleft">
-						<font color="#999999"><span><a href="">【中房京宝官网】</a></span><span><a href="">【中房京宝微信】</a></span></font>
+						<font color="#999999"><span><a href="http://www.zfjbgw.com">【中房京宝官网】</a></span><span><a href="">【中房京宝微信】</a></span></font>
 					</div> 
 					<div id="topright">
 						<font color="#999999"><span>您好：马到成功 &nbsp;&nbsp;&nbsp;<span><a href="user.php">[会员中心]</a></span> &nbsp; </span></font><span><a href="index.php">首页</a></span><span><a href="#">激活</a></span><span><a href="user.php?act=logout">退出</a></span>
@@ -293,8 +293,8 @@
 			<div id="dh">
 				<div >
 					<div id="daohang">
-						<a href="#"><div> <a href="user.php">首 页</a> </div></a>
-						<a href="#"><div id="zlgl" onclick="zlgl();" >个 人 资 料  </div></a>
+						<a href="user.php"><div> 首 页 </div></a>
+						<a href="user.php"><div id="zlgl" onclick="zlgl();" > 个 人 资 料 </div></a>
 						<a href="#"><div id="ywgl" onclick="ywgl();"> 加 盟 信 息 </div></a>
 						<a href="#"><div id="fwgl" onclick="fwgl();"> 积 分 管 理 </div></a>
 					</div>	
@@ -322,14 +322,15 @@
 						<p><a href="user.php?act=profile"> 资料修改 </a></p>
 						<p><a href="#"> 密码修改 </a></p>	
 					<div class="mainmenu">业 务 管 理</div>
-						<p><a href="#"> 推广注册 </a></p>
-						<p><a href="#"> 激 活 </a></p>
+						<p><a href="user.php ?act=tgzc" target="ifr"> 推广注册 </a></p>
+						<p><a href="user.php ?act=scoretranone" target="ifr"> 激 活 </a></p>
 							
 					<div class="mainmenu">服 务 管 理</div>
-						<p><a href="#"> 积分转账 </a></p>
-						<p><a href="#"> 购买积分 </a></p>
+						<p><a href="user.php ?act=scoretran" target="ifr"> 积分转账 </a></p>
+						<p><a href="user.php ?act=scorebuy" target="ifr"> 购买积分 </a></p>
 						<p><a href="#"> 积分提现 </a></p>
-						<p><a href="#"> 商城购物 </a></p>
+                                                <p><a href="user.php ?act=scoredetails" target="ifr"> 积分详情 </a></p>
+						<p><a href="http://www.zfjbym.com"> 商城购物 </a></p>
 					<div class="mainmenu">网 络 管 理</div>
 						<p><a href="#"> 衔接市场 </a></p>
 						<p><a href="#"> 衔接微信 </a></p>
@@ -340,6 +341,7 @@
 				
 				
 				<div id="mainright">
+                                     <!--
 					<div id="xiaji">
 						
 						<div id="mrtop">
@@ -377,7 +379,10 @@
 						
 						</table>
 					</div>
+                                  -->
+                                <iframe id="ifr" name="ifr" src="mainright.php" frameborder="no" style="border:1px solid #cdcdcd; border-radius:10px;"></iframe>
 				</div>
+                              
 				
 			</div>
 			

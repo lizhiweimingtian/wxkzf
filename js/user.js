@@ -1346,4 +1346,6 @@ function countdown(obj, msg) {
 		}, 1000)
 	}
 }
+
+
 /* 代码增加2014-12-23 by www.68ecshop.com _end */

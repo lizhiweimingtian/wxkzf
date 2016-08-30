@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>积分详情</title>
+		<meta charset="utf-8" />
+                <script src="./js/jquery-1.9.1.min.js" type="text/javascript"></script>
+                <style type="text/css">
+                   #act_box{width:100%; height:100%;}
+                   #tb{width:80%; background-color: #cdcdcd; margin-left: 10%; text-align: center;}
+                   #tb tr{background-color: #fff;height: 30px;}
+                   #tb tr td{background-color: #fff;line-height: 30px;}
+                </style>
+	</head>
+	<body>
+            <div id="act_box">
+                <table id="tb" cellspacing="1" border="0">
+                    <tr id="firsttr">
+                        <td style="background-color: #666; color:#fff;">状态</td>
+                        <td style="background-color: #666; color:#fff;">积分</td>
+                        <td style="background-color: #666; color:#fff;">积分转账时间</td>
+                        <td style="background-color: #666; color:#fff;">流水状态</td>
+                    </tr>
+                    {foreach from = $rs item = v} 
+                        <tr>
+                            {if $v.c eq "0"}
+                            <td>充值</td>  
+                            {elseif $v.c eq "1"}
+                             <td>转出</td>  
+                             {elseif $v.c eq "2"}
+                             <td>转入</td>
+                            {/if}
+                            <td>{$v.indetail}</td>
+                            <td>{$v.ntime}</td>
+                            {if $v.state eq "0"}
+                            <td>转账</td>
+                            {elseif $v.state eq "1"}
+                            <td>消费</td>
+                            {/if}
+                        </tr>
+                    {/foreach} 
+                    <tr>
+                        <td colspan="4">
+                             <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+                        </td>
+                    </tr>
+                </table>
+            </div>
+	</body>
+</html>

@@ -1,7 +1,7 @@
 <?php
 $data = array (
-  'shop_name' => '京东商城',
-  'shop_title' => '京东商城',
+  'shop_name' => '懿美商城',
+  'shop_title' => '懿美商城',
   'shop_desc' => '68ecshop-多城市多仓库电商系统-综合网购首选-正品低价、品质保障、配送及时、轻松购物!',
   'shop_keywords' => '68ecshop-多城市多仓库电商系统',
   'shop_country' => '1',

@@ -49,10 +49,10 @@
         <tr>
           <td width="8%" valign="top" class="city_key" style=""><b><?php echo $this->_var['city_key']; ?></b></td>
           <td valign="top"  class="city_key"> 
-          <?php $_from = $this->_var['city_val']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'ccity_0_57190800_1471150856');if (count($_from)):
-    foreach ($_from AS $this->_var['ccity_0_57190800_1471150856']):
+          <?php $_from = $this->_var['city_val']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array'); }; $this->push_vars('', 'ccity_0_38560000_1472526504');if (count($_from)):
+    foreach ($_from AS $this->_var['ccity_0_38560000_1472526504']):
 ?> 
-          	<a href="javascript:void(0)" onclick="chang_city(<?php echo $this->_var['ccity_0_57190800_1471150856']['region_id']; ?>,<?php echo $this->_var['ccity_0_57190800_1471150856']['level']; ?>)" class="region_name"><?php echo $this->_var['ccity_0_57190800_1471150856']['region_name']; ?></a>&nbsp;
+          	<a href="javascript:void(0)" onclick="chang_city(<?php echo $this->_var['ccity_0_38560000_1472526504']['region_id']; ?>,<?php echo $this->_var['ccity_0_38560000_1472526504']['level']; ?>)" class="region_name"><?php echo $this->_var['ccity_0_38560000_1472526504']['region_name']; ?></a>&nbsp;
           <?php endforeach; endif; unset($_from); ?><?php $this->pop_vars();; ?> 
           </td>
         </tr>
